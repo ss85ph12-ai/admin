@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+
+:root {
+    --primary: #4361ee;
+    --secondary: #6c757d;
+    --success: #2ecc71;
+    --danger: #e74c3c;
+    --dark: #2b2d42;
+    --light: #f8f9fa;
+    --bg: #edf2f4;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Tajawal', sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--dark);
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* حاويات الشاشات */
+.screen {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#login-screen {
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #8ec5fc 0%, #e0c3fc 100%);
+}
+
+/* تأثيرات 3D القوية */
+.3d-box {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 
+        0 10px 20px rgba(0,0,0,0.1),
+        0 6px 6px rgba(0,0,0,0.1),
+        inset 0 -5px 15px rgba(0,0,0,0.05);
+    border-bottom: 5px solid #d1d8e0;
+    transition: transform 0.3s ease;
+}
+
+.login-box {
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+}
+
+.login-box h2 {
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.login-box p {
+    margin-bottom: 25px;
+    line-height: 1.6;
+    color: var(--secondary);
+}
+
+/* الأزرار وحركة الانقلاب */
+.btn {
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    transition: all 0.3s;
+    box-shadow: 0 4px 0px rgba(0,0,0,0.2);
+    position: relative;
+    outline: none;
+}
+
+.btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 0px 0px rgba(0,0,0,0.2);
+}
+
+.btn-primary { background-color: var(--primary); box-shadow: 0 4px 0px #2740a8; }
+.btn-success { background-color: var(--success); box-shadow: 0 4px 0px #1e8449; }
+.btn-danger { background-color: var(--danger); box-shadow: 0 4px 0px #922b21; }
+.btn-secondary { background-color: var(--secondary); box-shadow: 0 4px 0px #4d5656; }
+
+/* تأثير زر الانقلاب (Flip) */
+.btn-flip {
+    background-color: transparent;
+    perspective: 1000px;
+    box-shadow: none;
+    padding: 0;
+    width: 100%;
+    height: 50px;
+}
+
+.btn-flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    display: block;
+}
+
+.btn-flip.flipping .btn-flip-inner {
+    transform: rotateX(180deg);
+}
+
+.btn-flip-front, .btn-flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 0px #2740a8;
+}
+
+.btn-flip-front {
+    background-color: var(--primary);
+}
+
+.btn-flip-back {
+    background-color: var(--success);
+    transform: rotateX(180deg);
+    box-shadow: 0 -4px 0px #1e8449;
+}
+
+/* لوحة التحكم */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+}
+
+.schools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* بطاقة المدرسة العصرية */
+.school-card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+}
+
+.school-card .btn-open {
+    font-size: 20px;
+    padding: 20px;
+    background: linear-gradient(45deg, var(--primary), #8ec5fc);
+    box-shadow: 0 6px 0px #2740a8;
+}
+
+.school-card .card-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.school-card .card-actions .btn { flex: 1; }
+
+/* النوافذ المنبثقة (Modals) */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border 0.3s;
+}
+
+.modal-content input:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.modal-actions .btn { flex: 1; }
+
+/* واجهة فتح النظام الداخلي (Iframe) */
+#iframe-screen { height: 100vh; }
+.iframe-header {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: none;
+    border-radius: 10px;
+}
+#school-iframe {
+    flex: 1;
+    width: 100%;
+    border: none;
+    background-color: #fff;
+}
+
+/* نافذة التثبيت */
+.install-box { text-align: center; }
+.app-icon { width: 100px; height: 100px; margin: 0 auto 15px; border-radius: 20px; }
