@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة المدارس</title>
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="login-screen" class="screen">
+        <div class="login-box 3d-box">
+            <h2>أهلاً بك أستاذ سرمد سعدي</h2>
+            <p>هذا النظام مقفل عالمياً، يمكنك الدخول عبر الجيميل الخاص بك فقط.</p>
+            <button id="login-btn" class="btn btn-flip">
+                <span class="btn-flip-inner">
+                    <span class="btn-flip-front"><i class="fab fa-google"></i> تسجيل الدخول عبر Google</span>
+                    <span class="btn-flip-back">جاري الدخول...</span>
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <div id="dashboard-screen" class="screen hidden">
+        <header class="header 3d-box">
+            <h1>لوحة تحكم المدارس</h1>
+            <div class="header-actions">
+                <button id="show-add-modal-btn" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة مدرسة</button>
+                <button id="logout-btn" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> خروج</button>
+            </div>
+        </header>
+        <div id="schools-container" class="schools-grid">
+            </div>
+    </div>
+
+    <div id="iframe-screen" class="screen hidden">
+        <div class="iframe-header 3d-box">
+            <button id="close-iframe-btn" class="btn btn-danger"><i class="fas fa-arrow-right"></i> رجوع للوحة التحكم</button>
+            <h3 id="current-school-title">اسم المدرسة</h3>
+        </div>
+        <iframe id="school-iframe" src="" frameborder="0"></iframe>
+    </div>
+
+    <div id="school-modal" class="modal hidden">
+        <div class="modal-content 3d-box">
+            <h3 id="modal-title">إضافة مدرسة جديدة</h3>
+            <input type="text" id="school-link" placeholder="أستاذ سرمد قم بنسخ الرابط الخاص في المدرسة هنا">
+            <input type="text" id="school-name" placeholder="أدخل اسم المدرسة">
+            <div class="modal-actions">
+                <button id="save-school-btn" class="btn btn-success"><i class="fas fa-save"></i> حفظ</button>
+                <button id="close-modal-btn" class="btn btn-secondary">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="install-modal" class="modal hidden">
+        <div class="modal-content 3d-box install-box">
+            <img src="./icon-192x192.png" alt="أيقونة التطبيق" class="app-icon">
+            <h3>تثبيت التطبيق</h3>
+            <p>قم بتثبيت التطبيق للوصول السريع والعمل دون اتصال.</p>
+            <div class="modal-actions">
+                <button id="install-btn" class="btn btn-primary">تثبيت الآن</button>
+                <button id="close-install-btn" class="btn btn-secondary">لاحقاً</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+</body>
+</html>
