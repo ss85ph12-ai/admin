@@ -11,9 +11,13 @@
 <body>
 
     <div id="login-screen" class="screen">
-        <div class="login-box 3d-box">
+        <div class="login-orb login-orb-one"></div>
+        <div class="login-orb login-orb-two"></div>
+        <div class="login-box depth-card" data-tilt data-tilt-max="7" data-tilt-speed="700">
+            <div class="login-icon"><i class="fas fa-building-columns"></i></div>
+            <span class="eyebrow">الإدارة المركزية</span>
             <h2>أهلاً بك أستاذ سرمد سعدي</h2>
-            <p>هذا النظام مقفل عالمياً، يمكنك الدخول عبر الجيميل الخاص بك فقط.</p>
+            <p>لوحة موحّدة لإدارة مدارسك والوصول إليها بسرعة وأمان.</p>
             <button id="login-btn" class="btn btn-flip">
                 <span class="btn-flip-inner">
                     <span class="btn-flip-front"><i class="fab fa-google"></i> تسجيل الدخول عبر Google</span>
@@ -24,30 +28,124 @@
     </div>
 
     <div id="dashboard-screen" class="screen hidden">
-        <header class="header 3d-box">
-            <h1>لوحة تحكم المدارس</h1>
-            <div class="header-actions">
-                <button id="show-add-modal-btn" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة مدرسة</button>
-                <button id="logout-btn" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> خروج</button>
-            </div>
-        </header>
-        <div id="schools-container" class="schools-grid">
-            </div>
+        <div class="dashboard-layout">
+            <aside class="sidebar depth-card">
+                <div class="brand">
+                    <div class="brand-mark"><i class="fas fa-graduation-cap"></i></div>
+                    <div>
+                        <strong>مدارسي</strong>
+                        <small>لوحة الإدارة</small>
+                    </div>
+                </div>
+
+                <nav class="dashboard-nav" aria-label="التنقل الرئيسي">
+                    <button class="dashboard-tab active" data-tab="overview">
+                        <i class="fas fa-chart-pie"></i><span>الرئيسية</span>
+                    </button>
+                    <button class="dashboard-tab" data-tab="schools">
+                        <i class="fas fa-school"></i><span>المدارس</span>
+                    </button>
+                    <button id="show-add-modal-btn" class="dashboard-tab add-tab">
+                        <i class="fas fa-plus"></i><span>إضافة</span>
+                    </button>
+                </nav>
+
+                <div class="sidebar-status">
+                    <span class="status-dot"></span>
+                    <div><strong>النظام متصل</strong><small>Firebase Cloud</small></div>
+                </div>
+            </aside>
+
+            <main class="dashboard-main">
+                <header class="topbar">
+                    <div>
+                        <span class="eyebrow">نظرة عامة</span>
+                        <h1>لوحة تحكم المدارس</h1>
+                    </div>
+                    <div class="user-area">
+                        <div class="user-chip">
+                            <span class="user-avatar"><i class="fas fa-user"></i></span>
+                            <span><strong id="user-name">سرمد سعدي</strong><small id="user-email">حساب الإدارة</small></span>
+                        </div>
+                        <button id="logout-btn" class="icon-btn danger-icon" title="تسجيل الخروج" aria-label="تسجيل الخروج"><i class="fas fa-arrow-right-from-bracket"></i></button>
+                    </div>
+                </header>
+
+                <section id="overview-panel" class="dashboard-panel active">
+                    <div class="hero-card depth-card" data-tilt data-tilt-max="3" data-tilt-speed="900">
+                        <div class="hero-content">
+                            <span class="hero-badge"><i class="fas fa-sparkles"></i> إدارة أسهل وأسرع</span>
+                            <h2>كل مدارسك<br>في مكان واحد</h2>
+                            <p>تابع الأنظمة وافتح أي مدرسة مباشرة من لوحة تحكم واحدة.</p>
+                            <button id="view-schools-btn" class="btn btn-light"><i class="fas fa-arrow-left"></i> عرض المدارس</button>
+                        </div>
+                        <div class="hero-visual" aria-hidden="true">
+                            <div class="floating-school"><i class="fas fa-school"></i></div>
+                            <span class="orbit orbit-one"></span>
+                            <span class="orbit orbit-two"></span>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <article class="stat-card depth-card" data-tilt data-tilt-max="8">
+                            <span class="stat-icon blue"><i class="fas fa-school"></i></span>
+                            <div><small>إجمالي المدارس</small><strong id="schools-count">—</strong></div>
+                        </article>
+                        <article class="stat-card depth-card" data-tilt data-tilt-max="8">
+                            <span class="stat-icon green"><i class="fas fa-cloud"></i></span>
+                            <div><small>حالة الاتصال</small><strong id="connection-state">متصل</strong></div>
+                        </article>
+                        <article class="stat-card depth-card" data-tilt data-tilt-max="8">
+                            <span class="stat-icon purple"><i class="fas fa-calendar-days"></i></span>
+                            <div><small>تاريخ اليوم</small><strong id="today-date">—</strong></div>
+                        </article>
+                    </div>
+
+                    <div class="quick-panel depth-card">
+                        <div class="quick-icon"><i class="fas fa-bolt"></i></div>
+                        <div><h3>وصول سريع</h3><p>انتقل إلى تبويب المدارس لفتح النظام المطلوب أو تعديل بياناته.</p></div>
+                        <button id="quick-add-btn" class="btn btn-primary"><i class="fas fa-plus"></i> مدرسة جديدة</button>
+                    </div>
+                </section>
+
+                <section id="schools-panel" class="dashboard-panel hidden">
+                    <div class="section-heading">
+                        <div><span class="eyebrow">إدارة المحتوى</span><h2>المدارس المسجلة</h2><p>افتح المدرسة أو عدّل اسمها ورابطها من هنا.</p></div>
+                        <button id="show-add-modal-btn-secondary" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة مدرسة</button>
+                    </div>
+                    <label class="search-field">
+                        <i class="fas fa-magnifying-glass"></i>
+                        <input type="search" id="schools-search" placeholder="ابحث باسم المدرسة..." autocomplete="off">
+                    </label>
+                    <div id="schools-container" class="schools-grid" aria-live="polite"></div>
+                </section>
+            </main>
+        </div>
     </div>
 
     <div id="iframe-screen" class="screen hidden">
-        <div class="iframe-header 3d-box">
-            <button id="close-iframe-btn" class="btn btn-danger"><i class="fas fa-arrow-right"></i> رجوع للوحة التحكم</button>
+        <div class="iframe-header depth-card">
+            <button id="close-iframe-btn" class="btn btn-danger"><i class="fas fa-arrow-right"></i> رجوع</button>
             <h3 id="current-school-title">اسم المدرسة</h3>
+            <span class="iframe-live"><i class="fas fa-circle"></i> النظام مباشر</span>
         </div>
         <iframe id="school-iframe" src="" frameborder="0"></iframe>
     </div>
 
     <div id="school-modal" class="modal hidden">
-        <div class="modal-content 3d-box">
-            <h3 id="modal-title">إضافة مدرسة جديدة</h3>
-            <input type="text" id="school-link" placeholder="أستاذ سرمد قم بنسخ الرابط الخاص في المدرسة هنا">
-            <input type="text" id="school-name" placeholder="أدخل اسم المدرسة">
+        <div class="modal-content depth-card">
+            <div class="modal-heading">
+                <span class="modal-icon"><i class="fas fa-school-circle-check"></i></span>
+                <div><span class="eyebrow">بيانات المدرسة</span><h3 id="modal-title">إضافة مدرسة جديدة</h3></div>
+            </div>
+            <label class="form-field">
+                <span><i class="fas fa-signature"></i> اسم المدرسة</span>
+                <input type="text" id="school-name" placeholder="مثال: مدرسة الأمل النموذجية" autocomplete="off">
+            </label>
+            <label class="form-field">
+                <span><i class="fas fa-link"></i> رابط النظام</span>
+                <input type="url" id="school-link" placeholder="https://example.github.io/school/" dir="ltr" autocomplete="off">
+            </label>
             <div class="modal-actions">
                 <button id="save-school-btn" class="btn btn-success"><i class="fas fa-save"></i> حفظ</button>
                 <button id="close-modal-btn" class="btn btn-secondary">إلغاء</button>
@@ -56,7 +154,7 @@
     </div>
 
     <div id="install-modal" class="modal hidden">
-        <div class="modal-content 3d-box install-box">
+        <div class="modal-content depth-card install-box">
             <img src="./icon-192x192.png" alt="أيقونة التطبيق" class="app-icon">
             <h3>تثبيت التطبيق</h3>
             <p>قم بتثبيت التطبيق للوصول السريع والعمل دون اتصال.</p>
@@ -67,6 +165,8 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.26.25"></script>
     <script type="module" src="./app.js"></script>
 </body>
 </html>
